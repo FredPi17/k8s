@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeapp
+  labels:
+    app: homeapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeapp
+  template:
+    metadata:
+      labels:
+        app: homeapp
+    spec:
+      containers:
+      - name: homeapp
+        image: fredericpinaud/homeapplication:1.0
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
